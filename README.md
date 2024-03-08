@@ -1,5 +1,17 @@
 # Native Ethernet Library For Teensy 4.1
 
+  **Note:**
+
+  This fork of the upstream NativeEthernet library is better at handling a failure to connect to a broker.  Add it to
+  your library list using Sketch -> Include library -> Add .ZIP Library... in the Arduino IDE and selecting the folder
+  where this README file is located.  This will **copy** the library files to the ArduinoIDE user library area (which
+  you can find under File -> Preferences -> Sketchbook location).  Any updates to your local clone of the repository
+  will have to be copied manually to the user library area.
+
+  Note that after adding this library the Arduino IDE will use this SO-ETS fork for compiling code instead of the
+  original NativeEthernet library that came with the Teensy download of the Arduino IDE.  You may see occasional
+  warnings when building the code that two versions of the library were found and indicating which one was used.
+
 Teensy 4.1 is automatically configured for Ethernet use.
 This library uses my FNET fork and is a required download.
 https://github.com/vjmuzik/FNET

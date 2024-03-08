@@ -1,0 +1,6 @@
+1.0.6-SO-ETS
+   * Fork to https://github.com/Steward-Observatory-ETS/NativeEthernet.git
+   * Return immediately from connect() if the socket closes when it can't connect to a broker.
+
+1.0.5
+   * Upstream version.

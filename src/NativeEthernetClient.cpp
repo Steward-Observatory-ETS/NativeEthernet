@@ -74,7 +74,9 @@ int EthernetClient::connect(IPAddress ip, uint16_t port)
     _connectPort = port;
     if(_connectPoll) return 1;
 	while (1) {
-        if(connectPoll()) return 1;
+		int connect_status = connectPoll();
+		if(connect_status == 1) return 1;  // Connected
+		if(connect_status == 2) break;     // Socket closed
 		if (millis() - start > _timeout) break;
 		delay(1);
 	}
@@ -83,6 +85,7 @@ int EthernetClient::connect(IPAddress ip, uint16_t port)
 	return 0;
 }
 
+// Returns 1 if connecting, 0 if waiting, 2 if socket has been closed.
 int EthernetClient::connectPoll(){
     uint8_t stat = Ethernet.socketStatus(sockindex);
 //    if(stat != 0x13){
@@ -119,13 +122,13 @@ int EthernetClient::connectPoll(){
             }
         }
 #endif
-        return 1;
+        return 1;   // Connected
     }
     if (stat == SnSR::CLOSED) {
         Ethernet.socketClose(sockindex);
-        return 0;
+        return 2;   // Socket closed
     }
-    return 0;
+    return 0;   // Still waiting
 }
 
 #if FNET_CFG_TLS
