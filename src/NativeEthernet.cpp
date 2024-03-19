@@ -22,6 +22,7 @@
 #include <fnet.h>
 #include "NativeEthernet.h"
 #include "utility/NativeW5100.h"
+#include "TeensyThreads.h"
 
 IPAddress EthernetClass::_dnsServerAddress;
 uint8_t* EthernetClass::stack_heap_ptr = NULL;
@@ -291,6 +292,7 @@ void EthernetClass::begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress g
     fnet_netif_set_ip4_dns(fnet_netif_get_default(), dns);
     
     while(!link_status){
+        threads.delay(10);
     }
 }
 

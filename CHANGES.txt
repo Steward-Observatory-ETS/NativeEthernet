@@ -1,3 +1,6 @@
+1.0.7-SO-ETS
+   * Yield CPU to other threads while waiting for network cable to be connected in begin().
+
 1.0.6-SO-ETS
    * Fork to https://github.com/Steward-Observatory-ETS/NativeEthernet.git
    * Return immediately from connect() if the socket closes when it can't connect to a broker.
